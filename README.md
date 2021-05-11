@@ -11,8 +11,12 @@ Credits are only gonna be programming related, go DL the mod **[here](https://au
 CREDITS:
 
 Ninjamuffin99 - Original Friday Night Funkin' Programmer
+
 KadeDev + Kade Engine Repo Contributers - Kade Engine
+
 Aurazona - Note counter, Song implementation, other neat lil bits.
+
+
 
 Below is the Kade Engine readme.
 
