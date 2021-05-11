@@ -48,6 +48,9 @@ class KadeEngineData
 		if (FlxG.save.data.npsDisplay == null)
 			FlxG.save.data.npsDisplay = false;
 
+		if (FlxG.save.data.NoteCounter == null)
+			FlxG.save.data.NoteCounter = true;
+
 		if (FlxG.save.data.frames == null)
 			FlxG.save.data.frames = 10;
 

@@ -926,10 +926,13 @@ class PlayState extends MusicBeatState
 		add(kadeEngineWatermark);
 
 		//note hit counter
-		hitCounter = new FlxText(FlxG.width * 0.425, FlxG.height * 0.3, 0, "Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits, 16);
-		hitCounter.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, JUSTIFY, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		hitCounter.scrollFactor.set();
-		add(hitCounter);
+		if(FlxG.save.data.NoteCounter)
+		{
+			hitCounter = new FlxText(FlxG.width * 0.425, FlxG.height * 0.3, 0, "Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits, 16);
+			hitCounter.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, JUSTIFY, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			hitCounter.scrollFactor.set();
+			add(hitCounter);
+		}
 
 		if (FlxG.save.data.downscroll)
 			kadeEngineWatermark.y = FlxG.height * 0.9 + 45;
@@ -1775,7 +1778,10 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text = Ratings.CalculateRanking(songScore,songScoreDef,nps,accuracy);
-		hitCounter.text = ("Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits); //hit counter updates
+
+		if(FlxG.save.data.NoteCounter)
+			hitCounter.text = ("Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits); //hit counter updates
+		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -2241,12 +2247,28 @@ class PlayState extends MusicBeatState
 						{
 							case 2:
 								dad.playAnim('singUP' + altAnim, true);
+								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+								{
+									camGame.shake(0.005, 0.1);
+								}
 							case 3:
 								dad.playAnim('singRIGHT' + altAnim, true);
+								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+									{
+										camGame.shake(0.005, 0.1);
+									}
 							case 1:
 								dad.playAnim('singDOWN' + altAnim, true);
+								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+									{
+										camGame.shake(0.005, 0.1);
+									}
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
+								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+									{
+										camGame.shake(0.005, 0.1);
+									}
 						}
 	
 						#if windows
