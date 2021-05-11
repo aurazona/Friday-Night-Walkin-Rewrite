@@ -91,6 +91,11 @@ class PlayState extends MusicBeatState
 
 	var songLength:Float = 0;
 	var kadeEngineWatermark:FlxText;
+	var hitCounter:FlxText;
+	var counterSicks:Int = 0;
+	var counterGoods:Int = 0;
+	var counterBads:Int = 0;
+	var counterShits:Int = 0;
 	
 	#if windows
 	// Discord RPC variables
@@ -170,6 +175,7 @@ class PlayState extends MusicBeatState
 
 	var fc:Bool = true;
 
+
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
@@ -226,6 +232,10 @@ class PlayState extends MusicBeatState
 		bads = 0;
 		shits = 0;
 		goods = 0;
+		counterSicks = 0;
+		counterGoods = 0;
+		counterBads = 0;
+		counterShits = 0;
 
 		misses = 0;
 
@@ -914,6 +924,12 @@ class PlayState extends MusicBeatState
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);
+
+		//note hit counter
+		hitCounter = new FlxText(FlxG.width * 0.425, FlxG.height * 0.3, 0, "Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits, 16);
+		hitCounter.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, JUSTIFY, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		hitCounter.scrollFactor.set();
+		add(hitCounter);
 
 		if (FlxG.save.data.downscroll)
 			kadeEngineWatermark.y = FlxG.height * 0.9 + 45;
@@ -1759,6 +1775,7 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text = Ratings.CalculateRanking(songScore,songScoreDef,nps,accuracy);
+		hitCounter.text = ("Sicks:" + " " + counterSicks + "\n \n" + "Goods:" + " " + counterGoods + "\n \n" + "Bads:" + " " + counterBads + "\n \n" + "Shits:" + " " + counterShits); //hit counter updates
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -2463,6 +2480,7 @@ class PlayState extends MusicBeatState
 				case 'shit':
 					score = -300;
 					combo = 0;
+					counterShits++;
 					misses++;
 					health -= 0.2;
 					ss = false;
@@ -2474,6 +2492,7 @@ class PlayState extends MusicBeatState
 					score = 0;
 					health -= 0.06;
 					ss = false;
+					counterBads++;
 					bads++;
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.50;
@@ -2481,12 +2500,15 @@ class PlayState extends MusicBeatState
 					daRating = 'good';
 					score = 200;
 					ss = false;
+					counterGoods++;
 					goods++;
 					if (health < 2)
 						health += 0.04;
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.75;
 				case 'sick':
+					counterSicks++;
+					trace("sick counter is " + counterSicks);
 					if (health < 2)
 						health += 0.1;
 					if (FlxG.save.data.accuracyMod == 0)
