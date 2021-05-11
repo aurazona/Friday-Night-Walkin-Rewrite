@@ -2247,25 +2247,25 @@ class PlayState extends MusicBeatState
 						{
 							case 2:
 								dad.playAnim('singUP' + altAnim, true);
-								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+								if (curSong == 'Zavodila' && FlxG.save.data.distractions)
 								{
 									camGame.shake(0.005, 0.1);
 								}
 							case 3:
 								dad.playAnim('singRIGHT' + altAnim, true);
-								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+								if (curSong == 'Zavodila' && FlxG.save.data.distractions)
 									{
 										camGame.shake(0.005, 0.1);
 									}
 							case 1:
 								dad.playAnim('singDOWN' + altAnim, true);
-								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+								if (curSong == 'Zavodila' && FlxG.save.data.distractions)
 									{
 										camGame.shake(0.005, 0.1);
 									}
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
-								if (curSong == 'zavodila' && FlxG.save.data.distractions)
+								if (curSong == 'Zavodila' && FlxG.save.data.distractions)
 									{
 										camGame.shake(0.005, 0.1);
 									}
