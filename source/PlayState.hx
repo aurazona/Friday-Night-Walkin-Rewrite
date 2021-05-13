@@ -172,6 +172,7 @@ class PlayState extends MusicBeatState
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
+	var darkness:FlxSprite;
 
 	var fc:Bool = true;
 
@@ -833,6 +834,29 @@ class PlayState extends MusicBeatState
 
 		add(dad);
 		add(boyfriend);
+		if (SONG.song.toLowerCase() == 'zavodila' || SONG.song.toLowerCase() == 'rubiks-cube')
+		{
+			darkness = new FlxSprite(0, 0).loadGraphic(Paths.image('dark'));
+			darkness.alpha = 0.85;
+			darkness.setGraphicSize(10000, 0);
+			darkness.antialiasing = true;
+			darkness.scrollFactor.set(1, 1);
+			darkness.active = false;
+			trace("darkness initialised lol");
+		}
+
+		if (SONG.song.toLowerCase() == 'zavodila' && FlxG.save.data.distractions) //ADDING DARKNESS
+		{
+			darkness.alpha = 0;
+			add(darkness);
+			trace("darkness added at 0 alpha");
+		}
+		if (SONG.song.toLowerCase() == 'rubiks-cube' && FlxG.save.data.distractions)
+		{
+			darkness.alpha = 0.85;
+			add(darkness);
+			trace("darkness added at 0.85 alpha");
+		}
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
@@ -981,6 +1005,10 @@ class PlayState extends MusicBeatState
 		{
 			songPosBG.cameras = [camHUD];
 			songPosBar.cameras = [camHUD];
+		}
+		if (FlxG.save.data.NoteCounter)
+		{
+			hitCounter.cameras = [camHUD];
 		}
 		kadeEngineWatermark.cameras = [camHUD];
 		if (loadRep)
@@ -3367,6 +3395,64 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.playAnim('hey', true);
 		}
+
+		if(FlxG.save.data.distractions)
+		{
+			//zavodila effects
+			//yes, i know this is probably a terrible way to do it but haxe can suck my dick.
+			if (curSong == 'Zavodila' && curStep == 896)
+			{
+				trace("SHOULD BE GETTING DARKER");
+				FlxTween.tween(darkness, { alpha: 0.425}, 1);
+			}
+	
+			if (curSong == 'Zavodila' && curStep == 920)
+			{
+				trace("SHOULD BE GETTING EVEN DARKER");
+				FlxTween.tween(darkness, {alpha: 0.85}, 0.5);
+			}
+	
+			if (curSong == 'Zavodila' && curStep == 924)
+			{
+				trace("SHOULD LIGHTEN UP");
+				FlxTween.tween(darkness, {alpha: 0}, 1);
+			}
+	
+			//rubik's cube effects
+			//blah blah inefficient whatever i don't care
+			if (curSong == 'Rubiks-Cube' && curStep == 140)
+			{
+				trace("SHOULD BE GETTING LIGHTER");
+				FlxTween.tween(darkness, {alpha: 0}, 1);
+			}
+			if (curSong == 'Rubiks-Cube' && curStep == 1296)
+			{
+				trace("SHOULD BE GETTING DARKER");
+				FlxTween.tween(darkness, {alpha: 0.85}, 3);
+			}
+			if (curSong == 'Rubiks-Cube' && curStep == 1440)
+			{
+				trace("SHOULD BE GETTING LIGHTER AGAIN");
+				FlxTween.tween(darkness, {alpha: 0}, 1.5);
+			}
+			if (curSong == 'Rubiks-Cube' && curStep == 1704)
+			{
+				trace("AAAAAAAAAA");
+				camGame.shake(0.01, 0.5);
+			}
+			if (SONG.song == 'Rubiks-Cube' && curStep == 2096)
+			{
+				trace("SCREEN SHAKING");
+				camGame.shake(0.01, 11);
+			}
+			if (SONG.song == 'Rubiks-Cube' && curStep == 2160)
+			{
+				trace("EVERYTHING IS COLLAPSING");
+				camHUD.shake(0.01, 5.3);
+			}
+		}
+		
+
 
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
