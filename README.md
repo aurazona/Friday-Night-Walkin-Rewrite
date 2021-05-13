@@ -8,7 +8,7 @@ This is based off of the **[Kade Engine repo](https://github.com/KadeDev/Kade-En
 
 Credits are only gonna be programming related, go DL the mod **[here](https://aurazona.net/home/friday-night-walkin/)** for the full credits lol
 
-CREDITS:
+## Credits, go show these people some love <3
 
 Ninjamuffin99 - Original Friday Night Funkin' Programmer
 
