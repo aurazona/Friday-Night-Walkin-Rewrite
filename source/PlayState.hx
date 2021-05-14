@@ -834,7 +834,7 @@ class PlayState extends MusicBeatState
 
 		add(dad);
 		add(boyfriend);
-		if (SONG.song.toLowerCase() == 'zavodila' || SONG.song.toLowerCase() == 'rubiks-cube')
+		if (SONG.song.toLowerCase() == 'zavodila' || SONG.song.toLowerCase() == 'rubiks-cube' || SONG.song.toLowerCase() == 'blackjack')
 		{
 			darkness = new FlxSprite(0, 0).loadGraphic(Paths.image('dark'));
 			darkness.alpha = 0.85;
@@ -856,6 +856,12 @@ class PlayState extends MusicBeatState
 			darkness.alpha = 0.85;
 			add(darkness);
 			trace("darkness added at 0.85 alpha");
+		}
+		if (SONG.song.toLowerCase() == 'blackjack' && FlxG.save.data.distractions)
+		{
+			darkness.alpha = 0;
+			add(darkness);
+			trace("darkness added at 0 alpha");
 		}
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);

@@ -25,8 +25,8 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Call-Ticketron', 'Zavodila', 'Rubiks-Cube'],
-		['Spookeez', 'South', "Monster"],
+		['Blackjack', 'Zavodila', 'Rubiks-Cube'],
+		['Turn-The-Lights-Off', 'eeeaaaooo', "Monster"],
 		['Pico', 'Philly', "Blammed"],
 		['Satin-Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
@@ -47,13 +47,13 @@ class StoryMenuState extends MusicBeatState
 	];
 
 	var weekNames:Array<String> = [
-		"How to Funk",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"Hating Simulator ft. Moawling"
+		"How to Walk",
+		"LONDON",
+		"ROBOGOAT",
+		"TBA",
+		"TBA",
+		"TBA",
+		"TBA"
 	];
 
 	var txtWeekTitle:FlxText;
