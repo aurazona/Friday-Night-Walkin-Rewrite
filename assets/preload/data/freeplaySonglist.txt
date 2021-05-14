@@ -20,3 +20,5 @@ Thorns:spirit:6
 Blackjack:pico:3
 Zavodila:pico:3
 Rubiks-Cube:pico:3
+Turn-The-Lights-Off:spooky:2
+eeeaaaooo:spooky:2
