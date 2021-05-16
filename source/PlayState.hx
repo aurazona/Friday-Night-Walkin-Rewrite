@@ -341,6 +341,29 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'blackjack':
+				if(storyDifficulty == 0)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('blackjack/blackjackDialogueEasy'));
+				if (storyDifficulty == 1)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('blackjack/blackjackDialogueNormal'));
+				if (storyDifficulty == 2)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('blackjack/blackjackDialogueHard'));
+			case 'zavodila':
+				if(storyDifficulty == 0)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/zavodilaDialogueEasy'));
+				if (storyDifficulty == 1)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/zavodilaDialogueNormal'));
+				if (storyDifficulty == 2)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/zavodilaDialogueHard'));
+			case 'rubiks-cube':
+				if(storyDifficulty == 0)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('rubiks-cube/rubiksDialogueEasy'));
+				if (storyDifficulty == 1)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('rubiks-cube/rubiksDialogueNormal'));
+				if (storyDifficulty == 2)
+					dialogue = CoolUtil.coolTextFile(Paths.txt('rubiks-cube/rubiksDialogueHard'));
+				
+
 		}
 
 		switch(SONG.stage)
@@ -1065,6 +1088,12 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'thorns':
+					schoolIntro(doof);
+				case 'blackjack':
+					schoolIntro(doof);
+				case 'zavodila':
+					schoolIntro(doof);
+				case 'rubiks-cube':
 					schoolIntro(doof);
 				default:
 					startCountdown();
