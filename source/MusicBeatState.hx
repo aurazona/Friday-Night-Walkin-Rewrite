@@ -98,6 +98,7 @@ class MusicBeatState extends FlxUIState
 		}
 
 		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
+		//trace('curStep updated');
 	}
 
 	public function stepHit():Void

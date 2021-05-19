@@ -3,12 +3,15 @@ package;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 
 #if windows
@@ -34,6 +37,14 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
+
+	var bg:FlxSprite;
+	var bgCam:FlxCamera;
+	var camZooming:Bool = true;
+	var defaultCamZoom:Float = 1.05;
+	var poop:String;
+	var songTime:Float;
+	var previousFrameTime:Int = 0;
 
 	override function create()
 	{
@@ -68,8 +79,13 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
 		add(bg);
+
+		bgCam = new FlxCamera();
+		FlxG.cameras.add(bgCam);
+
+		bg.cameras = [bgCam];
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -202,7 +218,7 @@ class FreeplayState extends MusicBeatState
 
 		if (accepted)
 		{
-			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+			poop = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
 
 			trace(poop);
 
@@ -213,6 +229,39 @@ class FreeplayState extends MusicBeatState
 			trace('CUR WEEK' + PlayState.storyWeek);
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
+
+		/* songTime += FlxG.game.ticks - previousFrameTime;
+		previousFrameTime = FlxG.game.ticks;
+
+		// Interpolation type beat
+		if (Conductor.lastSongPos != Conductor.songPosition)
+		{
+			songTime = (songTime + Conductor.songPosition) / 2;
+			Conductor.lastSongPos = Conductor.songPosition;
+			// Conductor.songPosition += FlxG.elapsed * 1000;
+			// trace('MISSED FRAME');
+		}
+
+		if (camZooming)
+		{
+			bgCam.zoom = FlxMath.lerp(1, bgCam.zoom, 0.95);
+		}
+
+		if (camZooming && curBeat % 4 == 0) //cam beat zooming code?
+		{
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+			bgCam.zoom += 0.03;
+			
+		}
+	
+		if (songs[curSelected].songName.toLowerCase() == 'zavodila' && camZooming && curBeat % 4 == 0 && bgCam.zoom < 1.35)
+		{
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+			bgCam.zoom += 0.06;
+			bgCam.shake(0.005, 0.1); 
+
+		} */
+		//trace('curStep is ' + curStep);
 	}
 
 	function changeDiff(change:Int = 0)
@@ -289,6 +338,10 @@ class FreeplayState extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+		poop = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+		var selectedSong = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+		Conductor.changeBPM(selectedSong.bpm);
+		trace('BPM is ' + selectedSong.bpm);
 	}
 }
 

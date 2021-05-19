@@ -1232,7 +1232,7 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
-			dad.dance();
+			dad.playAnim('idle');
 			gf.dance();
 			boyfriend.playAnim('idle');
 
@@ -3399,10 +3399,16 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0) //cam beat zooming code?
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
+		}
+
+		if (curSong.toLowerCase() == 'zavodila' && camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+		{
+			FlxG.camera.zoom += 0.03;
+			camHUD.zoom += 0.06;
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
@@ -3423,7 +3429,7 @@ class PlayState extends MusicBeatState
 		
 		if (!dad.animation.curAnim.name.startsWith("sing"))
 		{
-			dad.dance();
+			dad.playAnim('idle');
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
