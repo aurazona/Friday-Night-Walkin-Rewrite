@@ -390,7 +390,7 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				createCoolText(['Aurazona', 'pizzapancakess_', 'Chlorine', 'DSW Community']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -440,7 +440,7 @@ class TitleState extends MusicBeatState
 				addMoreText('Night');
 			// credTextShit.text += '\nNight';
 			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				addMoreText('Walkin'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();
