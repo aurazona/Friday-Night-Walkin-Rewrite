@@ -495,6 +495,51 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+			case 'aura':
+				frames = Paths.getSparrowAtlas('characters/aura');
+				animation.addByPrefix('idle', 'aura idle', 24, false);
+				animation.addByPrefix('singUP', 'aura up', 24, false);
+				animation.addByPrefix('singDOWN', 'aura down', 24, false);
+				animation.addByPrefix('singLEFT', 'aura left', 24, false);
+				animation.addByPrefix('singRIGHT', 'aura right', 24, false);
+
+				addOffset('idle');
+				addOffset('singUP');
+				addOffset('singRIGHT');
+				addOffset('singLEFT');
+				addOffset('singDOWN');
+				
+				playAnim('idle');
+			case 'robogoat':
+				frames = Paths.getSparrowAtlas('characters/robogoat');
+				animation.addByPrefix('idle', 'robogoat idle', 24, false);
+				animation.addByPrefix('singUP', 'robogoat up', 24, false);
+				animation.addByPrefix('singDOWN', 'robogoat down', 24, false);
+				animation.addByPrefix('singLEFT', 'robogoat left', 24, false);
+				animation.addByPrefix('singRIGHT', 'robogoat right', 24, false);
+
+				addOffset('idle');
+				addOffset('singUP');
+				addOffset('singRIGHT');
+				addOffset('singLEFT');
+				addOffset('singDOWN');
+
+				playAnim('idle');
+			case 'blake':
+				frames = Paths.getSparrowAtlas('characters/blake');
+				animation.addByPrefix('idle', 'blake idle', 24, false);
+				animation.addByPrefix('singUP', 'blake up', 24, false);
+				animation.addByPrefix('singDOWN', 'blake down', 24, false);
+				animation.addByPrefix('singLEFT', 'blake left', 24, false);
+				animation.addByPrefix('singRIGHT', 'blake right', 24, false);
+
+				addOffset('idle');
+				addOffset('singUP');
+				addOffset('singRIGHT');
+				addOffset('singLEFT');
+				addOffset('singDOWN');
+
+				playAnim('idle');
 		}
 
 		dance();

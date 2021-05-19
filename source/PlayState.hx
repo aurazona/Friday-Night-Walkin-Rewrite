@@ -1232,7 +1232,7 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
-			dad.playAnim('idle');
+			dad.dance();
 			gf.dance();
 			boyfriend.playAnim('idle');
 
@@ -3405,12 +3405,6 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'zavodila' && camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
-		{
-			FlxG.camera.zoom += 0.03;
-			camHUD.zoom += 0.06;
-		}
-
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
 
@@ -3429,7 +3423,7 @@ class PlayState extends MusicBeatState
 		
 		if (!dad.animation.curAnim.name.startsWith("sing"))
 		{
-			dad.playAnim('idle');
+			dad.dance();
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
@@ -3441,6 +3435,11 @@ class PlayState extends MusicBeatState
 		{
 			//zavodila effects
 			//yes, i know this is probably a terrible way to do it but haxe can suck my dick.
+			if (curSong.toLowerCase() == 'zavodila' && camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+			{
+				FlxG.camera.zoom += 0.03;
+				camHUD.zoom += 0.06;
+			}
 			if (curSong == 'Zavodila' && curStep == 896)
 			{
 				trace("SHOULD BE GETTING DARKER");
