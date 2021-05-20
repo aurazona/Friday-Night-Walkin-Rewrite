@@ -12,7 +12,7 @@ Credits are only gonna be programming related, go DL the mod **[here](https://au
 
 Ninjamuffin99 - Original Friday Night Funkin' Programmer
 
-KadeDev + Kade Engine Repo Contributers - Kade Engine
+KadeDev + Kade Engine Repo Contributors - Kade Engine
 
 Aurazona - Note counter, Song implementation, other neat lil bits.
 
