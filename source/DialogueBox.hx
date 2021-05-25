@@ -113,13 +113,36 @@ class DialogueBox extends FlxSpriteGroup
 			return;
 		
 		portraitLeft = new FlxSprite(-20, 40);
-		portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
-		portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns')
+		{
+			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+		}
+		if (PlayState.SONG.song.toLowerCase()=='blackjack' || PlayState.SONG.song.toLowerCase()=='zavodila' || PlayState.SONG.song.toLowerCase()=='rubiks-cube')
+		{
+			portraitLeft.frames = Paths.getSparrowAtlas('weeb/auraPortrait', 'shared');
+			portraitLeft.animation.addByPrefix('enter', 'enter', 24, false);
+			portraitLeft.animation.addByPrefix('bored', 'bored', 24, false);
+			portraitLeft.animation.addByPrefix('challenge', 'challenge', 24, false);
+			portraitLeft.animation.addByPrefix('checkMic', 'check mic', 24, false);
+			portraitLeft.animation.addByPrefix('confused', 'confused', 24, false);
+			portraitLeft.animation.addByPrefix('eh', 'eh', 24, false);
+			portraitLeft.animation.addByPrefix('excited', 'excited', 24, false);
+			portraitLeft.animation.addByPrefix('normal', 'normal', 24, false);
+			portraitLeft.animation.addByPrefix('surprised', 'surprised', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+		}
+
+
 
 		portraitRight = new FlxSprite(0, 40);
 		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
@@ -265,6 +288,69 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+				}
+			case 'aura':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('normal');
+				}
+			case 'auraEnter':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'auraBored':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('bored');
+				}
+			case 'auraChallenge':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('challenge');
+				}
+			case 'auraMic':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('checkMic');
+				}
+			case 'auraConfused':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('confused');
+				}
+			case 'auraEh':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('eh');
+				}
+			case 'auraExcited':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('excited');
+				}
+			case 'auraSurprised':
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('surprised');
 				}
 		}
 	}
