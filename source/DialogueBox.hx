@@ -46,9 +46,9 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'blackjack':
-				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'blackjack' | 'zavodila' | 'rubiks-cube':
+				FlxG.sound.playMusic(Paths.music('QLWA'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.4);
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -112,7 +112,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 		
-		portraitLeft = new FlxSprite(-20, 40);
+		portraitLeft = new FlxSprite(0, 0);
 		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns')
 		{
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
@@ -135,9 +135,10 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.animation.addByPrefix('excited', 'excited', 24, false);
 			portraitLeft.animation.addByPrefix('normal', 'normal', 24, false);
 			portraitLeft.animation.addByPrefix('surprised', 'surprised', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 2 * 0.9));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
+			portraitLeft.antialiasing = true;
 			add(portraitLeft);
 			portraitLeft.visible = false;
 		}
@@ -289,69 +290,76 @@ class DialogueBox extends FlxSpriteGroup
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
 				}
-			case 'aura':
+			case 'NormalAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('normal');
+
 				}
-			case 'auraEnter':
+				portraitLeft.animation.play('normal');
+			case 'EnterAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('enter');
+
 				}
-			case 'auraBored':
+				portraitLeft.animation.play('enter');
+			case 'BoredAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('bored');
+
 				}
-			case 'auraChallenge':
+				portraitLeft.animation.play('bored');
+			case 'ChallengeAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('challenge');
+
 				}
-			case 'auraMic':
+				portraitLeft.animation.play('challenge');
+			case 'MicAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('checkMic');
+
 				}
-			case 'auraConfused':
+				portraitLeft.animation.play('checkMic');
+			case 'ConfusedAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('confused');
+
 				}
-			case 'auraEh':
+				portraitLeft.animation.play('confused');
+			case 'EhAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('eh');
+
 				}
-			case 'auraExcited':
+				portraitLeft.animation.play('eh');
+			case 'ExcitedAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('excited');
 				}
-			case 'auraSurprised':
+				portraitLeft.animation.play('excited');
+			case 'SurprisedAura':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
-					portraitLeft.animation.play('surprised');
 				}
+				portraitLeft.animation.play('surprised');
 		}
 	}
 

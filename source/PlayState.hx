@@ -111,6 +111,10 @@ class PlayState extends MusicBeatState
 	public static var gf:Character;
 	public static var boyfriend:Boyfriend;
 
+	//DOUBLE BF TESTING
+	public static var boyfriend2:Boyfriend;
+	public static var boyfriend2Enabled:Bool = false;
+
 	public var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
 
@@ -1235,6 +1239,8 @@ class PlayState extends MusicBeatState
 			dad.dance();
 			gf.dance();
 			boyfriend.playAnim('idle');
+			if (boyfriend2Enabled)
+				boyfriend2.playAnim('idle');
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ready', "set", "go"]);
@@ -3177,12 +3183,20 @@ class PlayState extends MusicBeatState
 					{
 						case 2:
 							boyfriend.playAnim('singUP', true);
+							if(boyfriend2Enabled)
+								boyfriend2.playAnim('singUP', true);
 						case 3:
 							boyfriend.playAnim('singRIGHT', true);
+							if(boyfriend2Enabled)
+								boyfriend2.playAnim('singRIGHT', true);
 						case 1:
 							boyfriend.playAnim('singDOWN', true);
+							if(boyfriend2Enabled)
+								boyfriend2.playAnim('singDOWN', true);
 						case 0:
 							boyfriend.playAnim('singLEFT', true);
+							if(boyfriend2Enabled)
+								boyfriend2.playAnim('singLEFT', true);
 					}
 		
 					#if windows
@@ -3419,6 +3433,8 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
 		{
 			boyfriend.playAnim('idle');
+			if(boyfriend2Enabled)
+				boyfriend2.playAnim('idle');
 		}
 		
 		if (!dad.animation.curAnim.name.startsWith("sing"))
@@ -3439,7 +3455,17 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.camera.zoom += 0.03;
 				camHUD.zoom += 0.06;
+				camHUD.shake(0.01, Conductor.stepCrochet / 1000);
 			}
+			//precursory testing for a neat idea down the line
+			if(curSong == 'Zavodila' && curStep == 16)
+			{
+				trace('A CHALLENGER APPEARS');
+				boyfriend2 = new Boyfriend(boyfriend.x + 350, dad.y, 'aura');
+				boyfriend2Enabled = true;
+				add(boyfriend2);
+			}
+
 			if (curSong == 'Zavodila' && curStep == 896)
 			{
 				trace("SHOULD BE GETTING DARKER");
